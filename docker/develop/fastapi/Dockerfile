@@ -36,7 +36,7 @@ RUN pip install --upgrade pip
 COPY ./requirements ./requirements
 RUN pip install -r requirements/develop.txt
 
-COPY ["./docker/planner/develop/fastapi/entrypoint.sh", "/entrypoint.sh"]
+COPY ["./docker/develop/fastapi/entrypoint.sh", "/entrypoint.sh"]
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["make", "up"]

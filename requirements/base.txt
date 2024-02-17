@@ -1,0 +1,18 @@
+# Web Framework
+fastapi~=0.109.1
+
+# Web Server
+uvicorn==0.22.0
+
+# Database
+## POSTGRESQL
+sqlalchemy==2.0.16 # ORM
+alembic==1.11.1 # Migrations
+aiosqlite # Engine
+sqlalchemy-file # Assets
+fasteners~=0.19 # libcloud/storage/drivers/local dependency
+# DTOs
+pydantic==2.5.3
+
+# Dependecy Injector
+kink==0.7.0

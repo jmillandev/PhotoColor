@@ -5,17 +5,14 @@ dev:
 		command="bash"; \
 	fi;
 	echo "Running command: $(command)"
-	./init.sh run --rm planner_api $(command)
+	./init.sh run --rm photo_api $(command)
 
 up:
 	make migrate
-	uvicorn apps.planner.backend.server:app --reload --workers 1 --host 0.0.0.0 --port 8080	
-
-psql:
-	PGPASSWORD=${POSTGRES_PASSWORD} psql -h ${POSTGRES_SERVER} -U ${POSTGRES_USER} -d ${POSTGRES_DB}
+	uvicorn apps.server:app --reload --workers 1 --host 0.0.0.0 --port 8080	
 
 migrate:
-	alembic upgrade head
+	./migrate.py
 
 test:
 	make lint
