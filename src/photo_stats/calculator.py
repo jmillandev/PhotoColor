@@ -2,8 +2,9 @@ from uuid import UUID
 
 from kink import inject
 
-from .entity import PhotoStat, RgbStat
 from src.photo_stats.rgb_stat_estimator import RgbStatEstimator
+
+from .entity import PhotoStat, RgbStat
 
 
 @inject(use_factory=True)
@@ -17,10 +18,10 @@ class PhotoStatsCalculator:
     async def __call__(self, asset: bytes, photo_id: UUID) -> PhotoStat:
         rgb_stats = await self._rgb_estimator(asset)
         stat = PhotoStat.calculate(
-            photo_id=photo_id, 
+            photo_id=photo_id,
             red=rgb_stats.red,
             green=rgb_stats.green,
-            blue=rgb_stats.blue
+            blue=rgb_stats.blue,
         )
         await stat.save()
         return stat

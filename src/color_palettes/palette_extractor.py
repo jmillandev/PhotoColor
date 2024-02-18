@@ -1,5 +1,7 @@
-from .entity import Colors
 from typing import Protocol, runtime_checkable
+
+from .entity import Colors
+
 
 @runtime_checkable
 class ColorPaletteExtractor(Protocol):

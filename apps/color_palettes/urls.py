@@ -9,5 +9,5 @@ router.add_api_route(
     "/image/{photo_id}/palette",
     methods=["GET"],
     endpoint=find,
-    status_code=status.HTTP_200_OK
+    status_code=status.HTTP_200_OK,
 )

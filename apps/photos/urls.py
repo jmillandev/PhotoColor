@@ -1,6 +1,6 @@
 from fastapi import APIRouter, status
 
-from .controllers import upload, find, delete
+from .controllers import delete, find, upload
 
 router = APIRouter()
 

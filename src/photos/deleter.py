@@ -12,5 +12,5 @@ class PhotoDeleter:
 
     async def __call__(self, id: UUID) -> Photo:
         return await Photo.delete(id)
-        # TODO: If Repositories were implemented, Publish PhotoDestroyed event 
+        # TODO: If Repositories were implemented, Publish PhotoDestroyed event
         # and listen it on color_palettes and stats modules

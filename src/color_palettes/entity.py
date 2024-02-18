@@ -1,18 +1,17 @@
-from typing import NamedTuple, Self
+from typing import NamedTuple, Optional, Self
 from uuid import UUID, uuid4  # TODO: Create interface and UUID4 implementation
 
 from kink import inject
-from sqlalchemy import Column, String, Uuid, select, ForeignKey
-from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy import Column, ForeignKey, String, Uuid, select
 from sqlalchemy.exc import NoResultFound
-from typing import Optional
+from sqlalchemy.ext.asyncio import AsyncSession
 
 # TODO: Ilegal import - Infrastructure layer should not import from domain layer
 from src.shared.infrastructure.persistence.sqlalchemy.model import Base
 
 
 class Colors(NamedTuple):
-    color1: str # TODO: Use ValueObject to validate format
+    color1: str  # TODO: Use ValueObject to validate format
     color2: str
     color3: str
     color4: str
@@ -31,7 +30,7 @@ class ColorPalette(Base):
     color4 = Column(String(7))
     color5 = Column(String(7))
 
-    photo_id = Column(Uuid, ForeignKey('photos.id', ondelete='CASCADE'))
+    photo_id = Column(Uuid, ForeignKey("photos.id", ondelete="CASCADE"))
 
     @classmethod
     def generate(cls, photo_id: UUID, colors: Colors) -> Self:
@@ -54,7 +53,9 @@ class ColorPalette(Base):
 
     @classmethod
     @inject
-    async def find_by_photo_id(cls, id: UUID, sessionmaker: type[AsyncSession]) -> Optional[Self]:
+    async def find_by_photo_id(
+        cls, id: UUID, sessionmaker: type[AsyncSession]
+    ) -> Optional[Self]:
         # TODO: Move to infrastructure layer - ColorPaletteRepository
         async with sessionmaker() as session:
             query = select(cls).where(cls.photo_id == id)
@@ -65,7 +66,7 @@ class ColorPalette(Base):
                 return None
 
     @property
-    def colors(self)-> Colors:
+    def colors(self) -> Colors:
         return Colors(
             color1=self.color1,
             color2=self.color2,

@@ -1,12 +1,16 @@
-from src.color_palettes.entity import ColorPalette
-from factory import LazyAttribute, Faker
-from uuid import uuid4
-from tests.factory import SQLAlchemyFactory
 from random import randint
+from uuid import uuid4
+
+from factory import Faker, LazyAttribute
+
+from src.color_palettes.entity import ColorPalette
+from tests.factory import SQLAlchemyFactory
+
 
 def generate_rgb():
     rgb = (f"{randint(0, 256):02x}" for _ in range(3))
-    return '#' + ''.join(rgb)
+    return "#" + "".join(rgb)
+
 
 class ColorPaletteFactory(SQLAlchemyFactory):
     class Meta:

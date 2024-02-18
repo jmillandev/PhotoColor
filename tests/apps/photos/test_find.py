@@ -1,12 +1,14 @@
+from uuid import uuid4
+
 import pytest
 from fastapi import status
 from httpx import AsyncClient
 
 from apps.config import settings
-from uuid import uuid4
 
 pytestmark = pytest.mark.anyio
 from .factory import PhotoFactory
+
 
 class TestFindPhotoController:
     def setup_method(self):

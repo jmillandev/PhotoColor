@@ -1,7 +1,10 @@
-from src.photos.entity import Photo
-from factory import LazyAttribute
 from uuid import uuid4
+
+from factory import LazyAttribute
+
+from src.photos.entity import Photo
 from tests.factory import SQLAlchemyFactory
+
 
 class PhotoFactory(SQLAlchemyFactory):
     class Meta:
@@ -10,5 +13,5 @@ class PhotoFactory(SQLAlchemyFactory):
 
     id = LazyAttribute(lambda _: uuid4())
     asset = LazyAttribute(
-            lambda _: open("tests/fixtures/images/sample.jpg", "rb").read()
-        )
+        lambda _: open("tests/fixtures/images/sample.jpg", "rb").read()
+    )

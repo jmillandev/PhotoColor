@@ -1,8 +1,11 @@
-from src.photo_stats.entity import PhotoStat
-from factory import LazyAttribute
-from uuid import uuid4
-from tests.factory import SQLAlchemyFactory
 from random import randint
+from uuid import uuid4
+
+from factory import LazyAttribute
+
+from src.photo_stats.entity import PhotoStat
+from tests.factory import SQLAlchemyFactory
+
 
 class PhotoStatFactory(SQLAlchemyFactory):
     class Meta:

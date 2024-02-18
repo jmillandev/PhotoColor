@@ -1,6 +1,5 @@
-from uuid import UUID
-
 from typing import Tuple
+from uuid import UUID
 
 from src.color_palettes.finder import ColorPaletteFinder
 

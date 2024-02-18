@@ -5,8 +5,9 @@ from httpx import AsyncClient
 from apps.config import settings
 
 pytestmark = pytest.mark.anyio
-from .factory import PhotoStatFactory
 from tests.apps.photos.factory import PhotoFactory
+
+from .factory import PhotoStatFactory
 
 
 class TestShowPhotoStatsController:
@@ -15,9 +16,9 @@ class TestShowPhotoStatsController:
 
     async def test_success(self, client: AsyncClient) -> None:
         photo = await PhotoFactory()
-        await PhotoStatFactory(red=100, photo_id= photo.id)
+        await PhotoStatFactory(red=100, photo_id=photo.id)
         photo = await PhotoFactory()
-        await PhotoStatFactory(red=0, green=100, photo_id= photo.id)
+        await PhotoStatFactory(red=0, green=100, photo_id=photo.id)
 
         response = await client.get(self._url)
 

@@ -1,16 +1,17 @@
+from unittest.mock import patch
 from uuid import UUID
 
 import pytest
 from fastapi import status
 from httpx import AsyncClient
-from unittest.mock import patch
 
 from apps.config import settings
 
 pytestmark = pytest.mark.anyio
-from src.photos.entity import Photo
 from src.color_palettes.entity import ColorPalette
 from src.photo_stats.entity import PhotoStat
+from src.photos.entity import Photo
+
 
 class TestUploadPhotoController:
     def setup_method(self):
@@ -29,9 +30,11 @@ class TestUploadPhotoController:
 
         assert await Photo.find(photo_id) is not None
 
-    @patch.object(ColorPalette, 'save')
-    @patch.object(PhotoStat, 'save')
-    async def test_color_palette_and_stats_should_be_saved(self, save_color_palette, save_photo_stat, client: AsyncClient) -> None:
+    @patch.object(ColorPalette, "save")
+    @patch.object(PhotoStat, "save")
+    async def test_color_palette_and_stats_should_be_saved(
+        self, save_color_palette, save_photo_stat, client: AsyncClient
+    ) -> None:
         await client.post(self._url, files={"asset": self.asset})
 
         assert save_color_palette.called

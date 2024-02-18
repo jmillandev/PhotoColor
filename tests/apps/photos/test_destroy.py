@@ -1,14 +1,18 @@
+from uuid import uuid4
+
 import pytest
 from fastapi import status
 from httpx import AsyncClient
-from uuid import uuid4
+
 from apps.config import settings
 
 pytestmark = pytest.mark.anyio
-from .factory import PhotoFactory
-from tests.apps.color_palettes.factory import ColorPaletteFactory
 from src.color_palettes.entity import ColorPalette
 from src.photos.entity import Photo
+from tests.apps.color_palettes.factory import ColorPaletteFactory
+
+from .factory import PhotoFactory
+
 
 class TestFindPhotoController:
     def setup_method(self):
@@ -22,7 +26,7 @@ class TestFindPhotoController:
         response = await client.post(self._url % photo.id)
 
         assert response.status_code == status.HTTP_204_NO_CONTENT
-        assert response.text == ''
+        assert response.text == ""
 
         # TODO: Remove this assert when add Test Cases to Delete Application Service
         assert await Photo.find(photo.id) is None

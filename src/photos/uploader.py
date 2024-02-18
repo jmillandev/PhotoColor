@@ -1,9 +1,10 @@
 from fastapi import UploadFile
 from kink import inject
 
-from src.photos.entity import Photo
 from src.color_palettes.generator import ColorPaletteGenerator
 from src.photo_stats.calculator import PhotoStatsCalculator
+from src.photos.entity import Photo
+
 
 @inject(use_factory=True)
 class PhotoUploader:

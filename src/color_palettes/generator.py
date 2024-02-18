@@ -5,6 +5,7 @@ from kink import inject
 from .entity import ColorPalette
 from .palette_extractor import ColorPaletteExtractor
 
+
 @inject(use_factory=True)
 class ColorPaletteGenerator:
     # TODO: Listen Event PhotoUploded

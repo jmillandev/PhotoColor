@@ -1,12 +1,15 @@
-from Pylette import Palette
-from PIL import Image
 from io import BytesIO
-from numpy import asarray
-from kink import inject
-from src.color_palettes.palette_extractor import ColorPaletteExtractor
-from src.color_palettes.entity import Colors
-from Pylette.src.color_extraction import k_means_extraction
 from typing import Tuple
+
+from kink import inject
+from numpy import asarray
+from PIL import Image
+from Pylette import Palette
+from Pylette.src.color_extraction import k_means_extraction
+
+from src.color_palettes.entity import Colors
+from src.color_palettes.palette_extractor import ColorPaletteExtractor
+
 
 @inject(alias=ColorPaletteExtractor)
 class PyletteColorPaletteExtractor:
@@ -24,7 +27,7 @@ class PyletteColorPaletteExtractor:
             self._tuple_int_to_hex(palette[1].rgb),
             self._tuple_int_to_hex(palette[2].rgb),
             self._tuple_int_to_hex(palette[3].rgb),
-            self._tuple_int_to_hex(palette[4].rgb)
+            self._tuple_int_to_hex(palette[4].rgb),
         )
 
     def _tuple_int_to_hex(self, color: Tuple[int, int, int]) -> str:
