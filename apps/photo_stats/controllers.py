@@ -1,7 +1,4 @@
 from typing import Tuple
-from uuid import UUID
-
-from fastapi.responses import StreamingResponse
 
 from src.photo_stats.shower import PhotoStatsShower
 

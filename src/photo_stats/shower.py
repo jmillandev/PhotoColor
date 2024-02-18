@@ -1,5 +1,3 @@
-from uuid import UUID
-
 from kink import inject
 
 from .entity import PhotoStat

@@ -4,7 +4,7 @@ from kink import inject
 
 from src.photo_stats.rgb_stat_estimator import RgbStatEstimator
 
-from .entity import PhotoStat, RgbStat
+from .entity import PhotoStat
 
 
 @inject(use_factory=True)

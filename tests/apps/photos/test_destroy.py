@@ -5,13 +5,13 @@ from fastapi import status
 from httpx import AsyncClient
 
 from apps.config import settings
-
-pytestmark = pytest.mark.anyio
 from src.color_palettes.entity import ColorPalette
 from src.photos.entity import Photo
 from tests.apps.color_palettes.factory import ColorPaletteFactory
 
 from .factory import PhotoFactory
+
+pytestmark = pytest.mark.anyio
 
 
 class TestFindPhotoController:

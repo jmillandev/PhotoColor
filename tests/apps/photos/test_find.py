@@ -6,8 +6,9 @@ from httpx import AsyncClient
 
 from apps.config import settings
 
-pytestmark = pytest.mark.anyio
 from .factory import PhotoFactory
+
+pytestmark = pytest.mark.anyio
 
 
 class TestFindPhotoController:

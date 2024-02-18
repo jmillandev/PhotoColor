@@ -13,10 +13,10 @@ from libcloud.storage.drivers.local import LocalStorageDriver
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy_file.storage import StorageManager
 
-from src.color_palettes.infrastructure.palette_extractors.pylette import (
+from src.color_palettes.infrastructure.palette_extractors.pylette import (  # noqa: F401
     PyletteColorPaletteExtractor,
 )
-from src.photo_stats.infrastructure.rgb_stat_estimators.pyllow import (
+from src.photo_stats.infrastructure.rgb_stat_estimators.pyllow import (  # noqa: F401
     PyllowRgbStatEstimator,
 )
 from src.shared.infrastructure.persistence.sqlalchemy.session import SqlAlchemySession

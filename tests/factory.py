@@ -7,7 +7,9 @@ class SQLAlchemyFactory(SQLAlchemyModelFactory):
     class Meta:
         abstract = True
         sqlalchemy_session = None
-        sqlalchemy_session_factory = lambda: di[type[AsyncSession]]()  # Sessionmaker
+
+        def sqlalchemy_session_factory():
+            return di[type[AsyncSession]]()  # Sessionmaker
 
     @classmethod
     async def _create(cls, model_class, *args, **kwargs):
