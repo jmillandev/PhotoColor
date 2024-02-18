@@ -15,7 +15,9 @@ class Photo(Base):
 
     id = Column(Uuid, primary_key=True)
     filename = Column(String(50))
-    asset = Column(FileField) # TODO: FileField are not deleting the file from the storage
+    asset = Column(
+        FileField
+    )  # TODO: FileField are not deleting the file from the storage
 
     @classmethod
     def upload(cls, filename: str, asset: bytes) -> Self:

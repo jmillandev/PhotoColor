@@ -11,7 +11,7 @@ from src.shared.infrastructure.persistence.sqlalchemy.model import Base
 
 
 class Colors(NamedTuple):
-    color1: str  # TODO: Use ValueObject to validate format
+    color1: str  # TODO: Use ValueObject to validate formats
     color2: str
     color3: str
     color4: str

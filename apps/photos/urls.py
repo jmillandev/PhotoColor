@@ -1,4 +1,5 @@
 from fastapi import APIRouter, status
+from fastapi.responses import StreamingResponse
 
 from .controllers import delete, find, upload
 
@@ -16,6 +17,8 @@ router.add_api_route(
     "/image/{id}",
     methods=["GET"],
     endpoint=find,
+    response_class=StreamingResponse,
+    responses={200: {"content": {"image/jpeg": {}}}},
     status_code=status.HTTP_200_OK,
 )
 

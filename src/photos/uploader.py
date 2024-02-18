@@ -6,7 +6,9 @@ from kink import inject
 from src.color_palettes.generator import ColorPaletteGenerator
 from src.photo_stats.calculator import PhotoStatsCalculator
 from src.photos.entity import Photo
+
 from .exceptions import CantUploadEmptyAsset, UnsupportedAssetMediaType
+
 
 @inject(use_factory=True)
 class PhotoUploader:
