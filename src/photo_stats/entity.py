@@ -3,7 +3,7 @@ from typing import Self
 from uuid import uuid4  # TODO: Create interface and UUID4 implementation
 
 from kink import inject
-from sqlalchemy import Column, Integer, Uuid, func, select
+from sqlalchemy import Column, Integer, Uuid, func, select, ForeignKey
 from sqlalchemy.ext.asyncio import AsyncSession
 
 # TODO: Ilegal import - Infrastructure layer should not import from domain layer
@@ -24,7 +24,7 @@ class PhotoStat(Base):
     red = Column(Integer)
     green = Column(Integer)
     blue = Column(Integer)
-    photo_id = Column(Uuid)  # TODO: Add foreign key to photo
+    photo_id = Column(Uuid, ForeignKey('photos.id', ondelete='CASCADE'))
 
     @classmethod
     def calculate(cls, photo_id: uuid4, red: int, green: int, blue: int) -> Self:

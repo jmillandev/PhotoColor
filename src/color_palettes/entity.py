@@ -2,7 +2,7 @@ from typing import NamedTuple, Self
 from uuid import UUID, uuid4  # TODO: Create interface and UUID4 implementation
 
 from kink import inject
-from sqlalchemy import Column, String, Uuid, select
+from sqlalchemy import Column, String, Uuid, select, ForeignKey
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.exc import NoResultFound
 from typing import Optional
@@ -31,7 +31,7 @@ class ColorPalette(Base):
     color4 = Column(String(7))
     color5 = Column(String(7))
 
-    photo_id = Column(Uuid)  # TODO: Add foreign key to photo
+    photo_id = Column(Uuid, ForeignKey('photos.id', ondelete='CASCADE'))
 
     @classmethod
     def generate(cls, photo_id: UUID, colors: Colors) -> Self:

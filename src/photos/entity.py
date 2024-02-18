@@ -33,7 +33,7 @@ class Photo(Base):
 
     @classmethod
     @inject
-    async def destroy(cls, id: UUID, sessionmaker: type[AsyncSession]) -> None:
+    async def delete(cls, id: UUID, sessionmaker: type[AsyncSession]) -> None:
         # TODO: Move to infrastructure layer - PhotoRepository
         async with sessionmaker() as session:
             await session.execute(delete(cls).where(cls.id == id))
