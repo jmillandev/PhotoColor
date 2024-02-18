@@ -1,3 +1,5 @@
+from uuid import UUID
+
 from fastapi import UploadFile
 from kink import inject
 
@@ -13,9 +15,10 @@ class PhotoUploader:
     # TODO: Add Unit Test Case using Mocks(After implementing the repository pattern)
 
     async def __call__(self, asset: UploadFile) -> Photo:
-        photo = Photo.upload(filename=asset.filename, asset=asset.file.read())
-        await photo.save()
+        photo = Photo.upload(filename=str(asset.filename), asset=asset.file.read())
+        await photo.save()  # type: ignore[call-arg, misc]
         # TODO: Publish PhotoUploaded event
-        await ColorPaletteGenerator()(photo.asset.file.read(), photo.id)
-        await PhotoStatsCalculator()(photo.asset.file.read(), photo.id)
+        # TODO: Remove UUID(str(..)) when the repository pattern is implemented
+        await ColorPaletteGenerator()(photo.asset.file.read(), UUID(str(photo.id)))  # type: ignore[call-arg] # noqa: E501
+        await PhotoStatsCalculator()(photo.asset.file.read(), UUID(str(photo.id)))  # type: ignore[call-arg] # noqa: E501
         return photo

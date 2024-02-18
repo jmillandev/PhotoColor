@@ -18,5 +18,5 @@ class ColorPaletteGenerator:
     async def __call__(self, asset: bytes, photo_id: UUID) -> ColorPalette:
         colors = await self._extractor(asset)
         palette = ColorPalette.generate(photo_id=photo_id, colors=colors)
-        await palette.save()
+        await palette.save()  # type: ignore[misc, call-arg]
         return palette

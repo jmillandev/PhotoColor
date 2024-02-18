@@ -1,7 +1,7 @@
 from random import randint
 from uuid import uuid4
 
-from factory import LazyAttribute
+from factory import LazyAttribute  # type: ignore[import-untyped]
 
 from src.color_palettes.entity import ColorPalette
 from tests.factory import SQLAlchemyFactory

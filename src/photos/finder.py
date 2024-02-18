@@ -12,7 +12,7 @@ class PhotoFinder:
     # TODO: Add Unit Test Case using Mocks(After implementing the repository pattern)
 
     async def __call__(self, id: UUID) -> Photo:
-        photo = await Photo.find(id)
+        photo = await Photo.find(id)  # type: ignore[misc, arg-type]
         if not photo:
             raise NotFound("Photo not found")
         return photo

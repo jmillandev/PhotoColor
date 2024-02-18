@@ -12,7 +12,7 @@ from src.photos.uploader import PhotoUploader
 async def upload(asset: UploadFile) -> UUID:
     uploader = PhotoUploader()
     photo = await uploader(asset)
-    return photo.id
+    return UUID(str(photo.id))
 
 
 async def find(id: UUID) -> StreamingResponse:

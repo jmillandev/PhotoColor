@@ -1,4 +1,4 @@
-from factory.alchemy import SQLAlchemyModelFactory
+from factory.alchemy import SQLAlchemyModelFactory  # type: ignore[import-untyped]
 from kink import di
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -8,6 +8,7 @@ class SQLAlchemyFactory(SQLAlchemyModelFactory):
         abstract = True
         sqlalchemy_session = None
 
+        @staticmethod
         def sqlalchemy_session_factory():
             return di[type[AsyncSession]]()  # Sessionmaker
 

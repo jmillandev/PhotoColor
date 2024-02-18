@@ -28,7 +28,7 @@ class TestUploadPhotoController:
         assert response.status_code == status.HTTP_201_CREATED, response.text
         photo_id = UUID(response.json())
 
-        assert await Photo.find(photo_id) is not None
+        assert await Photo.find(photo_id) is not None  # type: ignore[misc, arg-type]
 
     @patch.object(ColorPalette, "save")
     @patch.object(PhotoStat, "save")

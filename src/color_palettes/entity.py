@@ -68,9 +68,9 @@ class ColorPalette(Base):
     @property
     def colors(self) -> Colors:
         return Colors(
-            color1=self.color1,
-            color2=self.color2,
-            color3=self.color3,
-            color4=self.color4,
-            color5=self.color5,
+            color1=str(self.color1),
+            color2=str(self.color2),
+            color3=str(self.color3),
+            color4=str(self.color4),
+            color5=str(self.color5),
         )

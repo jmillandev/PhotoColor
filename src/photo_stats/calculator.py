@@ -23,5 +23,5 @@ class PhotoStatsCalculator:
             green=rgb_stats.green,
             blue=rgb_stats.blue,
         )
-        await stat.save()
+        await stat.save()  # type: ignore[misc, call-arg]
         return stat

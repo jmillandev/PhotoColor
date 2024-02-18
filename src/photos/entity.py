@@ -1,4 +1,4 @@
-from typing import Self
+from typing import Optional, Self
 from uuid import UUID, uuid4
 
 from kink import inject
@@ -41,7 +41,7 @@ class Photo(Base):
 
     @classmethod
     @inject
-    async def find(cls, id: UUID, sessionmaker: type[AsyncSession]) -> Self:
+    async def find(cls, id: UUID, sessionmaker: type[AsyncSession]) -> Optional[Self]:
         # TODO: Move to infrastructure layer - PhotoRepository
         async with sessionmaker() as session:
             return await session.get(cls, id)

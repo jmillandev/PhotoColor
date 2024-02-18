@@ -4,8 +4,10 @@ from typing import Tuple
 from kink import inject
 from numpy import asarray
 from PIL import Image
-from Pylette import Palette
-from Pylette.src.color_extraction import k_means_extraction
+from Pylette import Palette  # type: ignore[import-untyped]
+from Pylette.src.color_extraction import (  # type: ignore[import-untyped]
+    k_means_extraction,
+)
 
 from src.color_palettes.entity import Colors
 from src.color_palettes.palette_extractor import ColorPaletteExtractor

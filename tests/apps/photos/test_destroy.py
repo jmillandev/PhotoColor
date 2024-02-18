@@ -29,9 +29,9 @@ class TestFindPhotoController:
         assert response.text == ""
 
         # TODO: Remove this assert when add Test Cases to Delete Application Service
-        assert await Photo.find(photo.id) is None
+        assert await Photo.find(photo.id) is None  # type: ignore[misc, arg-type]
         # TODO: Remove this assert when implement EventBus
-        assert await ColorPalette.find_by_photo_id(photo.id) is None
+        assert await ColorPalette.find_by_photo_id(photo.id) is None  # type: ignore[misc, arg-type]
 
     async def test_return_204_if_not_found_resource(self, client: AsyncClient) -> None:
         response = await client.post(self._url % uuid4())

@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from typing import Self
-from uuid import uuid4  # TODO: Create interface and UUID4 implementation
+from uuid import UUID, uuid4
 
 from kink import inject
 from sqlalchemy import Column, ForeignKey, Integer, Uuid, func, select
@@ -27,12 +27,12 @@ class PhotoStat(Base):
     photo_id = Column(Uuid, ForeignKey("photos.id", ondelete="CASCADE"))
 
     @classmethod
-    def calculate(cls, photo_id: uuid4, red: int, green: int, blue: int) -> Self:
+    def calculate(cls, photo_id: UUID, red: int, green: int, blue: int) -> Self:
         return cls(id=uuid4(), photo_id=photo_id, red=red, green=green, blue=blue)
 
     @classmethod
     @inject
-    async def avg(cls, sessionmaker: type[AsyncSession]) -> Self:
+    async def avg(cls, sessionmaker: type[AsyncSession]) -> RgbStat:
         # TODO: Move to infrastructure layer as a Repository
         query = select(
             cls,
@@ -42,7 +42,8 @@ class PhotoStat(Base):
         )
         async with sessionmaker() as session:
             result = await session.execute(query)
-            return result.one()
+            data = result.one()
+            return RgbStat(red=data.red, green=data.green, blue=data.blue)
 
     @inject
     async def save(self, sessionmaker: type[AsyncSession]) -> None:
