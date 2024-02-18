@@ -16,3 +16,6 @@ pydantic==2.5.3
 
 # Dependecy Injector
 kink==0.7.0
+
+# Pallete Extractor
+Pylette~=2.0.1

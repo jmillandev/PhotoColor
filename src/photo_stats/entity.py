@@ -35,11 +35,10 @@ class PhotoStat(Base):
     async def avg(cls, sessionmaker: type[AsyncSession]) -> Self:
         # TODO: Move to infrastructure layer as a Repository
         query = select(
-            [
-                func.round(func.avg(cls.red.percentage), 2),
-                func.round(func.avg(cls.green.percentage), 2),
-                func.round(func.avg(cls.blue.percentage), 2),
-            ]
+            cls,
+            func.avg(cls.red).label("red"),
+            func.avg(cls.green).label("green"),
+            func.avg(cls.blue).label("blue"),
         )
         async with sessionmaker() as session:
             result = await session.execute(query)

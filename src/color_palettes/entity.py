@@ -2,8 +2,10 @@ from typing import NamedTuple, Self
 from uuid import UUID, uuid4  # TODO: Create interface and UUID4 implementation
 
 from kink import inject
-from sqlalchemy import Column, String, Uuid
+from sqlalchemy import Column, String, Uuid, select
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.exc import NoResultFound
+from typing import Optional
 
 # TODO: Ilegal import - Infrastructure layer should not import from domain layer
 from src.shared.infrastructure.persistence.sqlalchemy.model import Base
@@ -21,11 +23,14 @@ class ColorPalette(Base):
     __tablename__ = "color_palettes"
 
     id = Column(Uuid, primary_key=True)
-    color1 = Column(String(6))
-    color2 = Column(String(6))
-    color3 = Column(String(6))
-    color4 = Column(String(6))
-    color5 = Column(String(6))
+    # TODO: TODO: We can store the colors as a list(or json) in a single column.
+    # Its closer to the domain model and how our client will use it
+    color1 = Column(String(7))
+    color2 = Column(String(7))
+    color3 = Column(String(7))
+    color4 = Column(String(7))
+    color5 = Column(String(7))
+
     photo_id = Column(Uuid)  # TODO: Add foreign key to photo
 
     @classmethod
@@ -49,7 +54,12 @@ class ColorPalette(Base):
 
     @classmethod
     @inject
-    async def find_by_photo_id(cls, id: UUID, sessionmaker: type[AsyncSession]) -> Self:
+    async def find_by_photo_id(cls, id: UUID, sessionmaker: type[AsyncSession]) -> Optional[Self]:
         # TODO: Move to infrastructure layer - ColorPaletteRepository
         async with sessionmaker() as session:
-            return await session.query(cls).filter_by(photo_id=id).first()
+            query = select(cls).where(cls.photo_id == id)
+            result = await session.execute(query)
+            try:
+                return result.scalar_one()
+            except NoResultFound:
+                return None

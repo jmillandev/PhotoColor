@@ -14,6 +14,8 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy_file.storage import StorageManager
 
 from src.shared.infrastructure.persistence.sqlalchemy.session import SqlAlchemySession
+from src.color_palettes.infrastructure.palette_extractors.pylette import PyletteColorPaletteExtractor
+from src.photo_stats.infrastructure.rgb_stat_estimators.pyllow import PyllowRgbStatEstimator
 
 
 def init(dependency_injector: Container = di) -> None:
