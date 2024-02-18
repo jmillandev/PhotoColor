@@ -10,7 +10,8 @@ class PhotoDeleter:
     # TODO: Inject PhotoRepository
     # TODO: Inject EventBus
 
-    async def __call__(self, id: UUID) -> Photo:
-        return await Photo.delete(id)  # type: ignore[misc, arg-type]
+    async def __call__(self, id: UUID) -> None:
+        await Photo.delete(id)  # type: ignore[misc, arg-type]
+        # TODO: Delete asset from storage - Use Domain Service
         # TODO: If Repositories were implemented, Publish PhotoDestroyed event
         # and listen it on color_palettes and stats modules

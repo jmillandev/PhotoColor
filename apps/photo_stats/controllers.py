@@ -1,9 +1,8 @@
-from typing import Tuple
-
+from src.photo_stats.entity import RgbStat
 from src.photo_stats.shower import PhotoStatsShower
 
 
-async def show() -> Tuple[int, int, int]:
+async def show() -> RgbStat:
     shower = PhotoStatsShower()
     photo_stat = await shower()
-    return (photo_stat.red, photo_stat.green, photo_stat.blue)
+    return photo_stat

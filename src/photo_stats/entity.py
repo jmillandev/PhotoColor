@@ -43,7 +43,12 @@ class PhotoStat(Base):
         async with sessionmaker() as session:
             result = await session.execute(query)
             data = result.one()
-            return RgbStat(red=data.red, green=data.green, blue=data.blue)
+        try:
+            return RgbStat(
+                red=int(data.red), green=int(data.green), blue=int(data.blue)
+            )
+        except TypeError:
+            return RgbStat(red=0, green=0, blue=0)
 
     @inject
     async def save(self, sessionmaker: type[AsyncSession]) -> None:

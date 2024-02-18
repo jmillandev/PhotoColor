@@ -23,5 +23,12 @@ class TestShowPhotoStatsController:
         response = await client.get(self._url)
 
         assert response.status_code == status.HTTP_200_OK
+        data = response.json()
+
+        # I know that is not the response expected on Notion.
+        # But is more explicit than [int, int, int]
+        assert isinstance(data["red"], int)
+        assert isinstance(data["green"], int)
+        assert isinstance(data["blue"], int)
         # TODO: Flakky until Database will clean after each test
-        # assert response.json() == [50, 50, 0]
+        # assert data == {'red': 50, 'green': 50, 'blue': 0]
