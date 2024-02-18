@@ -9,6 +9,7 @@ from src.photo_stats.calculator import PhotoStatsCalculator
 class PhotoUploader:
     # TODO: Inject PhotoRepository
     # TODO: Inject EventBus
+    # TODO: Add Unit Test Case using Mocks(After implementing the repository pattern)
 
     async def __call__(self, asset: UploadFile) -> Photo:
         photo = Photo.upload(filename=asset.filename, asset=asset.file.read())

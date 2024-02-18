@@ -9,6 +9,7 @@ from .palette_extractor import ColorPaletteExtractor
 class ColorPaletteGenerator:
     # TODO: Listen Event PhotoUploded
     # TODO: Inject ColorPaletteRepository
+    # TODO: Add Unit Test Case using Mocks(After implementing the repository pattern)
 
     def __init__(self, palette_extractor: ColorPaletteExtractor) -> None:
         self._extractor = palette_extractor

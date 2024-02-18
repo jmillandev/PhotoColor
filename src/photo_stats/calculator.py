@@ -10,6 +10,7 @@ from src.photo_stats.rgb_stat_estimator import RgbStatEstimator
 class PhotoStatsCalculator:
     # TODO: Listen Event PhotoUploded
     # TODO: Inject PhotoStatRepository
+    # TODO: Add Unit Test Case using Mocks(After implementing the repository pattern)
     def __init__(self, rgb_estimator: RgbStatEstimator) -> None:
         self._rgb_estimator = rgb_estimator
 

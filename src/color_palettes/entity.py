@@ -12,7 +12,7 @@ from src.shared.infrastructure.persistence.sqlalchemy.model import Base
 
 
 class Colors(NamedTuple):
-    color1: str
+    color1: str # TODO: Use ValueObject to validate format
     color2: str
     color3: str
     color4: str
@@ -63,3 +63,13 @@ class ColorPalette(Base):
                 return result.scalar_one()
             except NoResultFound:
                 return None
+
+    @property
+    def colors(self)-> Colors:
+        return Colors(
+            color1=self.color1,
+            color2=self.color2,
+            color3=self.color3,
+            color4=self.color4,
+            color5=self.color5,
+        )

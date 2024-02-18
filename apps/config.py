@@ -6,7 +6,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(case_sensitive=True)
-    API_PREFIX: str = "/api"
+    API_PREFIX: str = ""
     PROJECT_NAME: str = "Photo Color"
 
     # BACKEND_CORS_ORIGINS is a JSON-formatted list of origins

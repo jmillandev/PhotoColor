@@ -1,14 +1,11 @@
 from uuid import UUID
 
 import pytest
-from faker import Faker
 from fastapi import status
 from httpx import AsyncClient
 from unittest.mock import patch
 
 from apps.config import settings
-
-fake = Faker()
 
 pytestmark = pytest.mark.anyio
 from src.photos.entity import Photo
@@ -17,7 +14,7 @@ from src.photo_stats.entity import PhotoStat
 
 class TestUploadPhotoController:
     def setup_method(self):
-        self._url = f"{settings.API_PREFIX}/v1/upload"
+        self._url = f"{settings.API_PREFIX}/upload"
         self.asset = (
             "sample.jpg",
             open("tests/fixtures/images/sample.jpg", "rb"),

@@ -10,6 +10,7 @@ from typing import Tuple
 
 @inject(alias=ColorPaletteExtractor)
 class PyletteColorPaletteExtractor:
+    # TODO: Add Test case
     async def __call__(self, asset: bytes) -> Colors:
         image = Image.open(BytesIO(asset)).resize((256, 256))
         width, height = image.size

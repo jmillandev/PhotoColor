@@ -36,9 +36,9 @@ class PhotoStat(Base):
         # TODO: Move to infrastructure layer as a Repository
         query = select(
             cls,
-            func.avg(cls.red).label("red"),
-            func.avg(cls.green).label("green"),
-            func.avg(cls.blue).label("blue"),
+            func.round(func.avg(cls.red)).label("red"),
+            func.round(func.avg(cls.green)).label("green"),
+            func.round(func.avg(cls.blue)).label("blue"),
         )
         async with sessionmaker() as session:
             result = await session.execute(query)

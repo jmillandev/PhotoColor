@@ -2,3 +2,6 @@
 
 # Dev Tools
 isort==5.12.0
+
+# Factories
+factory-boy==3.3.0

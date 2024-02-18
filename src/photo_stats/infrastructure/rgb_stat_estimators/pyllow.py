@@ -7,6 +7,7 @@ from numpy import array, mean, round
 
 @inject(alias=RgbStatEstimator)
 class PyllowRgbStatEstimator:
+    # TODO: Add Test case
     async def __call__(self, asset: bytes) -> RgbStat:
         image = Image.open(BytesIO(asset))
         matrix = array(image)
